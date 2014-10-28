@@ -15,7 +15,7 @@ var initialize = function(){
     x = 300;
     y = 300;
 
-    dx =2;
+    dx =1;
     dy = 0;
 };
 
@@ -23,7 +23,7 @@ window.onload = function(){
 
     initialize();
     setInterval(function( ){playGame();},10);
-
+    //alert(Math.cos(Math.PI/2));
 
 };
 
@@ -34,11 +34,11 @@ var playGame = function(){
     drawShooter(x,y,30,global_gunAngle);
 
    if(left){
-       global_gunAngle = (global_gunAngle-1)%360;
+       global_gunAngle = (global_gunAngle+1)%360;
 
    }
    else if(right){
-       global_gunAngle = (global_gunAngle+1)%360;
+       global_gunAngle = (global_gunAngle-1)%360;
    }
 
    getDirection(global_gunAngle);
@@ -61,7 +61,7 @@ var getDirection = function(angle){
 
    var a;
 
-    dx = dx/Math.abs(dx);
+  //  dx = dx/Math.abs(dx);
 
     if(angle>=0){
         a = angle;
@@ -70,26 +70,28 @@ var getDirection = function(angle){
         a = angle + 360;
     }
 
+    dy = 1*Math.sin(Math.PI*2*a/360);
+    dx = 1*Math.cos(Math.PI*2*a/360);
 
     if(a<=90){
         dx = Math.abs(dx);
-        dy = dx*(Math.tan((a)/(90)));
+        dy = -Math.abs(dy);
     }
     else if(a<=180){
         dx = -Math.abs(dx);
-        dy = Math.abs(dx)*(Math.tan((a-90)/(90)));
+        dy = -Math.abs(dy);
     }
     else if(a<=270){
         dx = -Math.abs(dx);
-        dy = dx*(Math.tan((a-90)/(90)));
+        dy = Math.abs(dy);
     }
     else{
 
         dx = Math.abs(dx);
-        dy = -Math.abs(dx)*(Math.tan((a-90)/(90)));
+        dy = Math.abs(dy);
     }
 
-    dy = Math.abs(dx)*Math.tan(a);
+
 
 };
 

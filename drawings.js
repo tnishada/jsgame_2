@@ -23,7 +23,7 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
     /*finish drawing circle*/
 
     ctx.translate(x,y);
-    ctx.rotate( (Math.PI / 180) * gun_angle);
+    ctx.rotate( -(Math.PI / 180) * gun_angle);
 
 
     ctx.beginPath();
@@ -32,7 +32,7 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
     ctx.lineWidth = gun_width;
     ctx.stroke();
 
-    ctx.rotate((-Math.PI / 180) * gun_angle);
+    ctx.rotate((Math.PI / 180) * gun_angle);
     ctx.translate(-x,-y);
 
 
