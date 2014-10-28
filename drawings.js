@@ -5,30 +5,15 @@ var WIDTH;
 var HEIGHT;
 var canvas;
 var ctx;
-var gun_length =10;
+var gun_length =20;
 var gun_width = 3;
-var global_gunAngle =270;
-
-window.onload = function(){
-
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    WIDTH = canvas.width;
-    HEIGHT = canvas.height;
-
-    setInterval(  function(){
-        global_gunAngle++;
-        drawShooter(50,50,30, global_gunAngle);}
-        ,10);
-
-    //drawShooter(50,50,30,global_gunAngle);
+var global_gunAngle =0;
+var x,y;
 
 
-};
 
+/*draw shooter including body and gun*/
 var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
-
-    clearCanvas();
 
         /*draw circle*/
     ctx.beginPath();
@@ -53,6 +38,7 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
 
 };
 
+/*clear the canvas*/
 var clearCanvas = function(){
 
     ctx.fillStyle = "#FFFFFF";
