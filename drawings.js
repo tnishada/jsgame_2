@@ -7,8 +7,8 @@ var canvas; // canvas object
 var ctx;
 var gun_length =20;
 var gun_width = 3;
-var shooterSpeed =1;
-var shooterAngle =0;
+var shooterSpeed =2;
+
 var shooterRadius = 30;
 var x,y;
 

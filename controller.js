@@ -5,6 +5,9 @@
 
 var dx , dy;
 var bullet;
+var shooterAngle =0;
+var dtheta =2;
+var stones = new Array(5);
 
 /*initialize*/
 var initialize = function(){
@@ -18,6 +21,7 @@ var initialize = function(){
     dx =1;
     dy = 0;
     bullet = new Bullet();
+    createStone();
 
 };
 
@@ -33,18 +37,33 @@ window.onload = function(){
 var playGame = function(){
 
     clearCanvas();
+
+    for(var i in stones)
+    stones[i].handle();
+
     drawShooter(x,y,shooterRadius,shooterAngle);
 
    if(left){
-       shooterAngle = (shooterAngle+1)%360;
+       shooterAngle = (shooterAngle+dtheta)%360;
 
    }
    else if(right){
-       shooterAngle = (shooterAngle-1)%360;
+       shooterAngle = (shooterAngle-dtheta)%360;
    }
 
    getDirection(shooterAngle);
 
+    if(x+dx>WIDTH){
+        x =0;
+    }else if(x+dx <0){
+        x = WIDTH;
+    }
+
+    if(y+dy>HEIGHT){
+        y =0;
+    }else if(y+dy <0){
+        y = HEIGHT;
+    }
 
     if(up){
         x += dx;
@@ -56,11 +75,12 @@ var playGame = function(){
     }
     document.getElementById("text").innerText = shooterAngle;
 
-    if(ctrl && !bullet.bulletEnabled){
+    if(ctrl && !bullet.bulletEnabled){ // shoot occur
         bullet.shoot(shooterAngle);
 
     }
     bullet.handle();
+
 
 
 };
@@ -102,3 +122,25 @@ var getDirection = function(angle){
 
 };
 
+var createStone = function(){
+
+    for(var i=0;i<5;i++) {
+
+        var y = Math.floor(Math.random() * 2) * HEIGHT;
+        var x = Math.random() * WIDTH;
+        var angle;
+
+        if (y == HEIGHT) { // created at bottom
+            angle = 45 + Math.random() * 90;
+
+        } else if (y == 0) {//created at top
+
+
+            angle = 225 + Math.random() * 90;
+        }
+
+        var radius = 10 + 20 * Math.random();
+
+        stones[i] = new Stone(x, y, radius, angle);
+    }
+};
