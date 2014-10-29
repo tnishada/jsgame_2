@@ -1,13 +1,14 @@
 /**
  * Created by tharindu on 10/28/2014.
  */
-var WIDTH;
+var WIDTH;  // width and height of the canvas
 var HEIGHT;
-var canvas;
+var canvas; // canvas object
 var ctx;
 var gun_length =20;
 var gun_width = 3;
-var global_gunAngle =0;
+var shooterSpeed =1;
+var shooterAngle =0;
 var x,y;
 
 
@@ -35,7 +36,6 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
     ctx.rotate((Math.PI / 180) * gun_angle);
     ctx.translate(-x,-y);
 
-
 };
 
 /*clear the canvas*/
@@ -47,5 +47,15 @@ var clearCanvas = function(){
     ctx.closePath();
     ctx.fill();
     ctx.fillStyle = "#000000";
+
+};
+
+var drawBullet = function(x,y,angle){
+
+    var b = new Bullet();
+    ctx.beginPath();
+    ctx.arc(x, y, b.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
+    ctx.closePath();
+    ctx.fill();
 
 };

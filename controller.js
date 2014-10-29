@@ -31,17 +31,17 @@ window.onload = function(){
 var playGame = function(){
 
     clearCanvas();
-    drawShooter(x,y,30,global_gunAngle);
+    drawShooter(x,y,30,shooterAngle);
 
    if(left){
-       global_gunAngle = (global_gunAngle+1)%360;
+       shooterAngle = (shooterAngle+1)%360;
 
    }
    else if(right){
-       global_gunAngle = (global_gunAngle-1)%360;
+       shooterAngle = (shooterAngle-1)%360;
    }
 
-   getDirection(global_gunAngle);
+   getDirection(shooterAngle);
 
 
     if(up){
@@ -52,7 +52,7 @@ var playGame = function(){
         x -= dx;
         y -=dy;
     }
-    document.getElementById("text").innerText = global_gunAngle;
+    document.getElementById("text").innerText = shooterAngle;
 
 };
 
@@ -70,8 +70,8 @@ var getDirection = function(angle){
         a = angle + 360;
     }
 
-    dy = 1*Math.sin(Math.PI*2*a/360);
-    dx = 1*Math.cos(Math.PI*2*a/360);
+    dy = shooterSpeed*Math.sin(Math.PI*2*a/360);
+    dx = shooterSpeed*Math.cos(Math.PI*2*a/360);
 
     if(a<=90){
         dx = Math.abs(dx);
@@ -90,8 +90,6 @@ var getDirection = function(angle){
         dx = Math.abs(dx);
         dy = Math.abs(dy);
     }
-
-
 
 };
 
