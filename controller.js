@@ -8,6 +8,7 @@ var bullet;
 var shooterAngle =0;
 var dtheta =2;
 var stones = new Array(5);
+var t; // used to control timer events
 
 /*initialize*/
 var initialize = function(){
@@ -29,7 +30,7 @@ var initialize = function(){
 window.onload = function(){
 
     initialize();
-    setInterval(function( ){playGame();},10);
+   t = setInterval(function( ){playGame();},10);
     //alert(Math.cos(Math.PI/2));
 
 };
@@ -47,10 +48,25 @@ var playGame = function(){
 
         stones[i].handle();
 
-        if(collision(bullet.locationx, bullet.locationy,stones[i].locationx,stones[i].locationy,stones[i].radius) && bullet.bulletEnabled){
+        if(collision(bullet.locationx, bullet.locationy,bullet.radius,stones[i].locationx,stones[i].locationy,stones[i].radius) && bullet.bulletEnabled){
 
             stones[i].stoneEnabled = false;
+            bullet.bulletEnabled = false;
+            var p = document.getElementById("point");
+            p.innerText = parseInt(p.innerText) + 1+""; // update the score bar
         }
+
+            /*used  to detect collision between stones and shooter*/
+        /*-5 used to give a clear vision to the user about the collision */
+        if(collision(x, y,shooterRadius-5,stones[i].locationx,stones[i].locationy,stones[i].radius)){
+
+            var s = document.getElementById("gameStatus");
+            s.innerText = "Game Over"
+            clearInterval(t);
+        }
+
+
+
     }
 
     drawShooter(x,y,shooterRadius,shooterAngle);
@@ -157,10 +173,10 @@ var createStone = function(i){
 
 /*detect collision and return true if collision*/
 
-var collision = function(bulletx,bullety,stonex,stoney,stoner){
+var collision = function(bulletX,bulletY,bulletR,stoneX,stoneY,stoneR){
 
-    var distance = Math.sqrt((bulletx-stonex)*(bulletx-stonex) + (bullety-stoney)*(bullety-stoney));
+    var distance = Math.sqrt((bulletX-stoneX)*(bulletX-stoneX) + (bulletY-stoneY)*(bulletY-stoneY));
 
-    return (distance<=stoner);
+    return (distance<=(stoneR+bulletR));
 
 };

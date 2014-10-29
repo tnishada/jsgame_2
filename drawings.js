@@ -5,7 +5,7 @@ var WIDTH;  // width and height of the canvas
 var HEIGHT;
 var canvas; // canvas object
 var ctx;
-var gun_length =20;
+var gun_length =10;
 var gun_width = 3;
 var shooterSpeed =2;
 

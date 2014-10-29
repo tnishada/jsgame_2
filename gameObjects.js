@@ -4,7 +4,7 @@
 
 /*Bullet Object*/
 function Bullet(){
-    var radius = 5;
+    this.radius = 5;
     var speed =9;
     this.bulletEnabled = false;
     this.locationx =0;
@@ -14,7 +14,7 @@ function Bullet(){
 
     this.draw = function(x,y){  //draw function
         ctx.beginPath();
-        ctx.arc(x, y,radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
+        ctx.arc(x, y,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
         ctx.closePath();
         ctx.fill();
     };
