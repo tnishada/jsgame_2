@@ -2,13 +2,15 @@
  * Created by tharindu on 10/28/2014.
  */
 /*initialize values*/
-
+var WIDTH;  // width and height of the canvas
+var HEIGHT;
 var dx , dy;
 var bullet;
 var shooterAngle =0;
 var dtheta =2;
 var stones = new Array(5);
 var t; // used to control timer events
+var canvas; // canvas object
 
 /*initialize*/
 var initialize = function(){

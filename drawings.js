@@ -1,9 +1,7 @@
 /**
  * Created by tharindu on 10/28/2014.
  */
-var WIDTH;  // width and height of the canvas
-var HEIGHT;
-var canvas; // canvas object
+
 var ctx;
 var gun_length =10;
 var gun_width = 3;
@@ -18,6 +16,7 @@ var x,y;
 var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
 
         /*draw circle*/
+    ctx.fillStyle = "blue";
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
     ctx.closePath();
@@ -29,34 +28,31 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
 
 
     ctx.beginPath();
+
     ctx.moveTo(0,0);
     ctx.lineTo(gun_length+radius,0);
     ctx.lineWidth = gun_width;
+    ctx.strokeStyle = "blue";
     ctx.stroke();
 
     ctx.rotate((Math.PI / 180) * gun_angle);
     ctx.translate(-x,-y);
+
+    ctx.fillStyle = "black";
+
 
 };
 
 /*clear the canvas*/
 var clearCanvas = function(){
 
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = "#000000";
     ctx.beginPath();
     ctx.rect(0,0,WIDTH,HEIGHT);
     ctx.closePath();
     ctx.fill();
-    ctx.fillStyle = "#000000";
+
 
 };
 
-/*draw bullet when x y and radius given*/
-var drawBullet = function(x,y,radius){
 
-    ctx.beginPath();
-    ctx.arc(x, y,radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
-    ctx.closePath();
-    ctx.fill();
-
-};

@@ -13,10 +13,13 @@ function Bullet(){
     this.dy =0;
 
     this.draw = function(x,y){  //draw function
+
+        ctx.fillStyle = "Blue";
         ctx.beginPath();
         ctx.arc(x, y,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
         ctx.closePath();
         ctx.fill();
+        ctx.fillStyle = "black";
     };
 
         /*this method is invoked once ctrl pressed*/
@@ -48,10 +51,11 @@ function Bullet(){
 /*shooter object*/
 
 function shooter(x,y,radius,angle){
-    this.x =x;
-    this.y = y;
+    this.locationx =x;
+    this.locationy = y;
     this.radius = radius;
     this.angle = angle;
+    this.rotationAngale = 2;
 }
 
 /*stone object*/
@@ -69,10 +73,12 @@ function Stone(x,y,radius,angle){
     this.dy = -this.speed*Math.sin(Math.PI*2*angle/360);
 
     this.draw = function(){
+        ctx.fillStyle = "green";
         ctx.beginPath();
         ctx.arc(this.locationx, this.locationy,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
         ctx.closePath();
         ctx.fill();
+        ctx.fillStyle = "black";
     };
 
     this.handle = function(){
