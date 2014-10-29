@@ -9,6 +9,7 @@ var gun_length =20;
 var gun_width = 3;
 var shooterSpeed =1;
 var shooterAngle =0;
+var shooterRadius = 30;
 var x,y;
 
 
@@ -50,11 +51,11 @@ var clearCanvas = function(){
 
 };
 
-var drawBullet = function(x,y,angle){
+/*draw bullet when x y and radius given*/
+var drawBullet = function(x,y,radius){
 
-    var b = new Bullet();
     ctx.beginPath();
-    ctx.arc(x, y, b.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
+    ctx.arc(x, y,radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
     ctx.closePath();
     ctx.fill();
 

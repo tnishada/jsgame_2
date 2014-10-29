@@ -1,10 +1,10 @@
 /**
  * Created by tharindu on 10/28/2014.
  */
-
 /*initialize values*/
 
 var dx , dy;
+var bullet;
 
 /*initialize*/
 var initialize = function(){
@@ -17,6 +17,8 @@ var initialize = function(){
 
     dx =1;
     dy = 0;
+    bullet = new Bullet();
+
 };
 
 window.onload = function(){
@@ -31,7 +33,7 @@ window.onload = function(){
 var playGame = function(){
 
     clearCanvas();
-    drawShooter(x,y,30,shooterAngle);
+    drawShooter(x,y,shooterRadius,shooterAngle);
 
    if(left){
        shooterAngle = (shooterAngle+1)%360;
@@ -53,6 +55,13 @@ var playGame = function(){
         y -=dy;
     }
     document.getElementById("text").innerText = shooterAngle;
+
+    if(ctrl && !bullet.bulletEnabled){
+        bullet.shoot(shooterAngle);
+
+    }
+    bullet.handle();
+
 
 };
 
