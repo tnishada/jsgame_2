@@ -12,11 +12,11 @@ function Bullet(){
     this.dx = 0;
     this.dy =0;
 
-    this.draw = function(x,y){  //draw function
+    this.draw = function(xCoordinate,yCoordinate){  //draw function
 
         ctx.fillStyle = "Blue";
         ctx.beginPath();
-        ctx.arc(x, y,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
+        ctx.arc(xCoordinate, yCoordinate,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
         ctx.closePath();
         ctx.fill();
         ctx.fillStyle = "black";
@@ -25,8 +25,8 @@ function Bullet(){
     /*this method is invoked once ctrl pressed*/
     this.shoot = function(angle){
 
-        this.locationx = shooter.locationx + (shooterRadius+gun_length)*Math.cos(Math.PI*2*angle/360);
-        this.locationy =  shooter.locationy - (shooterRadius+gun_length)*Math.sin(Math.PI*2*angle/360);
+        this.locationx = shooter.locationx + (shooter.radius+shooter.gunlength)*Math.cos(Math.PI*2*angle/360);
+        this.locationy =  shooter.locationy - (shooter.radius+shooter.gunlength)*Math.sin(Math.PI*2*angle/360);
         this.dx = speed*Math.cos(Math.PI*2*angle/360);
         this.dy = -speed*Math.sin(Math.PI*2*angle/360);
         this.bulletEnabled = true;

@@ -9,9 +9,9 @@ function Shooter(){
     this.radius = 30;
     this.angle = 0;
     this.rotationSpeed = 2;
-    var gunWidth = 3;
-    var speed = 2;
-    var gunLength = 10;
+    this.gunWidth = 3;
+    this.speed = 2;
+    this.gunlength = 10;
     this.dx =1;
     this.dy =0;
 
@@ -29,11 +29,10 @@ function Shooter(){
         ctx.translate(this.locationx,this.locationy);
         ctx.rotate( -(Math.PI / 180) * this.angle);
 
-
         ctx.beginPath();
         ctx.moveTo(0,0);
-        ctx.lineTo(gunLength+this.radius,0);
-        ctx.lineWidth = gunWidth;
+        ctx.lineTo(this.gunlength+this.radius,0);
+        ctx.lineWidth = this.gunWidth;
         ctx.strokeStyle = "blue";
         ctx.stroke();
 
@@ -41,17 +40,11 @@ function Shooter(){
         ctx.translate(-this.locationx,-this.locationy);
 
         ctx.fillStyle = "black";
-
     };
-
 
     /*update dx and dy*/
      this.setDirection = function(){
-
         var a;
-
-        //  dx = dx/Math.abs(dx);
-
         if(this.angle>=0){
             a = this.angle;
         }
@@ -59,8 +52,8 @@ function Shooter(){
             a = this.angle + 360;
         }
 
-        this.dy = shooterSpeed*Math.sin(Math.PI*2*a/360);
-        this.dx = shooterSpeed*Math.cos(Math.PI*2*a/360);
+        this.dy = shooter.speed*Math.sin(Math.PI*2*a/360);
+        this.dx = shooter.speed*Math.cos(Math.PI*2*a/360);
 
         if(a<=90){
             this.dx = Math.abs(this.dx);
@@ -79,8 +72,5 @@ function Shooter(){
             this.dx = Math.abs(this.dx);
             this.dy = Math.abs(this.dy);
         }
-
     };
-
-
 }

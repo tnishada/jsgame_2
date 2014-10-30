@@ -5,12 +5,11 @@
  * Created by tharindu on 10/28/2014.
  */
 /*initialize values*/
+var ctx;
 var WIDTH;  // width and height of the canvas
 var HEIGHT;
 var dx , dy;
 var bullet;
-var shooterAngle =0;
-var dtheta =2;
 var stones = new Array(5);
 var t; // used to control timer events
 var canvas; // canvas object
@@ -30,26 +29,21 @@ var initialize = function(){
     bullet = new Bullet();
     shooter = new Shooter();
 
-    for(var i=0;i<5;i++) {
+    for(var i=0;i<5;i++) { //  assign each stone a sze and beginning coordinates
         createStone(i);
     }
 };
 
 window.onload = function(){
-
     initialize();
     t = setInterval(function( ){playGame();},10);
-
-
 };
 
 /*start to execute the game*/
 var playGame = function(){
-
     clearCanvas();
 
     for(var i=0;i<5;i++) {
-
         if(!stones[i].stoneEnabled){
             createStone(i);
         }
@@ -72,26 +66,18 @@ var playGame = function(){
             s.innerText = "Game Over";
             clearInterval(t);
         }
-
-
-
     }
 
-   // draw(x,y,shooterRadius,shooterAngle);
     shooter.draw();
 
     if(left){
-       // shooterAngle = (shooterAngle+dtheta)%360;
         shooter.angle = (shooter.angle+shooter.rotationSpeed)%360;
-
     }
     else if(right){
-        //shooterAngle = (shooterAngle-dtheta)%360;
         shooter.angle = (shooter.angle-shooter.rotationSpeed)%360;
     }
 
     shooter.setDirection();
-   // getDirection(shooterAngle);
 
     if(shooter.locationx+shooter.dx>WIDTH){
         shooter.locationx =0;
@@ -120,11 +106,4 @@ var playGame = function(){
 
     }
     bullet.handle();
-
-
-
 };
-
-
-
-
