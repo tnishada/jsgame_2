@@ -29,12 +29,13 @@ var createStone = function(i){
         angle = 45 + Math.random() * 90;
 
     } else if (y == 0) {//created at top
-
         angle = 225 + Math.random() * 90;
     }
-
     var radius = 10 + 20 * Math.random();
-
     stones[i] = new Stone(x, y, radius, angle);
+};
 
+var healthReducer = function(shipRadius,stoneRadius){
+
+        return Math.floor(25*(Math.PI*stoneRadius*stoneRadius)/(Math.PI*shipRadius*shipRadius));
 };

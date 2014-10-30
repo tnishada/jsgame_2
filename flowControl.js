@@ -62,9 +62,20 @@ var playGame = function(){
         /*-5 used to give a clear vision to the user about the collision */
         if(collision(shooter.locationx, shooter.locationy,shooter.radius-5,stones[i].locationx,stones[i].locationy,stones[i].radius)){
 
-            var s = document.getElementById("gameStatus");
-            s.innerText = "Game Over";
-            clearInterval(t);
+
+            var health = document.getElementById("hPoint");
+            var Hpoint = parseInt(health.innerText,10);
+            Hpoint -= healthReducer(shooter.radius,stones[i].radius);
+            health.innerText = Hpoint+"";
+
+            stones[i].stoneEnabled = false;
+
+            if(Hpoint<=0){
+                health.innerText = "00";
+                var s = document.getElementById("gameStatus");
+                s.innerText = "Game Over";
+                clearInterval(t);
+            }
         }
     }
 

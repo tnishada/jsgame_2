@@ -1,12 +1,28 @@
 
 #canvas{
     border: 2px solid black;
+    display: inline-block;
 }
+
+
+
+body{
+   background-color: coral;
+}
+
+
 
 #container{
     text-align: center;
 }
 
-body{
-   background-color: coral;
+#score{
+
+    display: inline-block;
+    margin-right: 300px;
+}
+
+#health{
+    display: inline-block;
+
 }

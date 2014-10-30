@@ -3,25 +3,30 @@
 <head lang="en">
     <meta charset="UTF-8">
     <link href="style.css" type="text/css" rel="stylesheet"/>
+
     <script type="text/javascript" src="stone.js"></script>
     <script type="text/javascript" src="shooter.js"></script>
     <script type="text/javascript" src="bullet.js"></script>
     <script type="text/javascript" src="generalFunctions.js"></script>
-
     <script type="text/javascript" src="flowControl.js"></script>
     <script type="text/javascript" src="eventHandler.js"></script>
 
 
-
-    <title>Game</title>
+    <title>Space Battle</title>
 </head>
 <body>
 
     <div id = "container">
-        <h2>Score : <span id="point">00</span></h2>
-         <canvas height="600" width="600" id="canvas"></canvas>
+        <div>
+             <h2 id="score">Score : <span id="point">00</span></h2>
+             <h2 id="health">Health : <span id="hPoint">100</span>%</h2>
+        </div>
+        <canvas height="600" width="600" id="canvas"></canvas>
+
+
         <h2 id="gameStatus"></h2>
     </div>
+
     <div id="text"></div>
 </body>
 </html>
