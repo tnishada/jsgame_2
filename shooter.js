@@ -7,7 +7,7 @@ function Shooter(){
     this.locationx =300;
     this.locationy = 300;
     this.radius = 30;
-    this.angle = 0;
+    this.angle = 90;
     this.rotationSpeed = 2;
     this.gunWidth = 3;
     this.speed = 2;

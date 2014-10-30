@@ -39,3 +39,4 @@ var healthReducer = function(shipRadius,stoneRadius){
 
         return Math.floor(25*(Math.PI*stoneRadius*stoneRadius)/(Math.PI*shipRadius*shipRadius));
 };
+

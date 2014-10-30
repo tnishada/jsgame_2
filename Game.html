@@ -16,13 +16,17 @@
 </head>
 <body>
 
-    <div id = "container">
+    <div id = "container"> <!--used to center all the elements -->
         <div>
-             <h2 id="score">Score : <span id="point">00</span></h2>
+             <h2 id="score">Score : <span id="sPoint">00</span></h2>
              <h2 id="health">Health : <span id="hPoint">100</span>%</h2>
         </div>
         <canvas height="600" width="600" id="canvas"></canvas>
-
+        <div>
+            <input type="button" value="start" onclick="startEvent()"/>
+            <input type="button" value="Pause" onclick="pauseEvent()"/>
+            <input type="button" value="Reset" onclick="resetEvent()"/>
+        </div>
 
         <h2 id="gameStatus"></h2>
     </div>

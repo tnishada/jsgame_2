@@ -21,8 +21,8 @@ var initialize = function(){
     ctx = canvas.getContext("2d");
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
-    x = 300;
-    y = 300;
+
+
 
     dx =1;
     dy = 0;
@@ -36,7 +36,8 @@ var initialize = function(){
 
 window.onload = function(){
     initialize();
-    t = setInterval(function( ){playGame();},10);
+    playGame();
+
 };
 
 /*start to execute the game*/
@@ -54,7 +55,7 @@ var playGame = function(){
 
             stones[i].stoneEnabled = false;
             bullet.bulletEnabled = false;
-            var p = document.getElementById("point");
+            var p = document.getElementById("sPoint");
             p.innerText = parseInt(p.innerText) + 1+""; // update the score bar
         }
 
@@ -117,4 +118,29 @@ var playGame = function(){
 
     }
     bullet.handle();
+};
+
+/*start button click call this function*/
+var startEvent = function() {
+    clearInterval(t);
+    t = setInterval(function( ){playGame();},10);
+};
+
+var pauseEvent = function(){
+    clearInterval(t);
+};
+
+var resetEvent = function(){
+    shooter.angle =90;
+    shooter.locationx = 300;
+    shooter.locationy = 300;
+
+    for(var i=0;i<5;i++) { //  assign each stone a sze and beginning coordinates
+        createStone(i);
+    }
+
+    clearInterval(t);
+    document.getElementById("hPoint").innerText = "100";
+    document.getElementById("sPoint").innerText = "00";
+    playGame();
 };
