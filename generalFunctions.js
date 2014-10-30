@@ -32,7 +32,15 @@ var createStone = function(i){
         angle = 225 + Math.random() * 90;
     }
     var radius = 10 + 20 * Math.random();
-    stones[i] = new Stone(x, y, radius, angle);
+   // stones[i] = new Stone(x, y, radius, angle);
+
+    stones[i] = new rStone(x,y,radius,angle);
+    for(var j=0;j<6;j++){
+
+        stones[i].nodes[j][0] = j*60;
+        stones[i].nodes[j][1] =  10+Math.floor(Math.random()*40);
+    }
+
 };
 
 var healthReducer = function(shipRadius,stoneRadius){
