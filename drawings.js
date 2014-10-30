@@ -43,16 +43,6 @@ var drawShooter = function(x,y,radius, gun_angle){ // angle at 0 >  90 V
 
 };
 
-/*clear the canvas*/
-var clearCanvas = function(){
 
-    ctx.fillStyle = "#000000";
-    ctx.beginPath();
-    ctx.rect(0,0,WIDTH,HEIGHT);
-    ctx.closePath();
-    ctx.fill();
-
-
-};
 
 

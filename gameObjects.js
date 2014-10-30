@@ -25,8 +25,8 @@ function Bullet(){
         /*this method is invoked once ctrl pressed*/
     this.shoot = function(angle){
 
-        this.locationx = x + (shooterRadius+gun_length)*Math.cos(Math.PI*2*angle/360);
-        this.locationy =  y - (shooterRadius+gun_length)*Math.sin(Math.PI*2*angle/360);
+        this.locationx = shooter.locationx + (shooterRadius+gun_length)*Math.cos(Math.PI*2*angle/360);
+        this.locationy =  shooter.locationy - (shooterRadius+gun_length)*Math.sin(Math.PI*2*angle/360);
         this.dx = speed*Math.cos(Math.PI*2*angle/360);
         this.dy = -speed*Math.sin(Math.PI*2*angle/360);
         this.bulletEnabled = true;
@@ -48,15 +48,7 @@ function Bullet(){
 
 }
 
-/*shooter object*/
 
-function shooter(x,y,radius,angle){
-    this.locationx =x;
-    this.locationy = y;
-    this.radius = radius;
-    this.angle = angle;
-    this.rotationAngale = 2;
-}
 
 /*stone object*/
 function Stone(x,y,radius,angle){
