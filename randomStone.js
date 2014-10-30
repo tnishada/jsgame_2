@@ -6,7 +6,7 @@
  */
 
 /*stone object*/
-function rStone(x,y,radius,angle){
+function RStone(x,y,radius,angle){
     this.locationx=x;
     this.locationy = y;
     this.angle = angle;

@@ -51,7 +51,8 @@ var playGame = function(){
 
         stones[i].handle();
 
-        if(collision(bullet.locationx, bullet.locationy,bullet.radius,stones[i].locationx,stones[i].locationy,stones[i].radius) && bullet.bulletEnabled){
+       // if(collision(bullet.locationx, bullet.locationy,bullet.radius,stones[i].locationx,stones[i].locationy,stones[i].radius) && bullet.bulletEnabled){
+        if(collision(stones[i],bullet.locationx, bullet.locationy,bullet.radius) && bullet.bulletEnabled){
 
             stones[i].stoneEnabled = false;
             bullet.bulletEnabled = false;
