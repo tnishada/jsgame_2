@@ -55,18 +55,43 @@ var healthReducer = function(shipRadius,stoneRadius){
 // original name "complexCollision"
 var collision = function(stone,circleX,circleY,circleR){
 
+    circleY *= -1;
+    var xc = stone.locationx;
+    var yc = -stone.locationy;
+    var x1 =  xc+stone.nodes[5][1]*Math.cos(2*Math.PI*stone.nodes[5][0]/360);
+    var y1 = yc-stone.nodes[5][1]*Math.sin(2*Math.PI*stone.nodes[5][0]/360);
+    var x2 = xc+stone.nodes[0][1]*Math.cos(2*Math.PI*stone.nodes[0][0]/360);
+    var y2 = yc-stone.nodes[0][1]*Math.sin(2*Math.PI*stone.nodes[0][0]/360);
+
+    var alpha = intersectionX(x1,y1,x2,y2,circleX,circleY,xc,yc);
+
+    if(alpha>= -100 && alpha<= 700){
+        var beta = (alpha-x1)*((y1-y2)/(x1-x2)) + y1;
+
+        if(getDistance(x1,y1,x2,y2)+10 > getDistance(x1,y1,alpha,beta) + getDistance(alpha,beta,x2,y2)){
+
+            if(getDistance(xc,yc,circleX,circleY)+10 > getDistance(xc,yc,alpha,beta) + getDistance(alpha,beta,circleX,circleY)){
+
+                if(getDistance(alpha,beta,circleX,circleY) < circleR){//collision occurs
+                    return true;
+                }
+            }
+        }
+    }
 
 
     for(i=0;i<5;i++){
 
-        var x1 = stone.nodes[i][1]*Math.cos(2*Math.PI*stone.nodes[i][0]/360);
-        var y1 = stone.nodes[i][1]*Math.sin(2*Math.PI*stone.nodes[i][0]/360);
-        var x2 = stone.nodes[i+1][1]*Math.cos(2*Math.PI*stone.nodes[i+1][0]/360);
-        var y2 = stone.nodes[i+1][1]*Math.sin(2*Math.PI*stone.nodes[i+1][0]/360);
-        var xc = stone.locationx;
-        var yc = stone.locationy;
+         xc = stone.locationx;
+         yc = -stone.locationy;
+         x1 =  xc+stone.nodes[i][1]*Math.cos(2*Math.PI*stone.nodes[i][0]/360);
+         y1 = yc-stone.nodes[i][1]*Math.sin(2*Math.PI*stone.nodes[i][0]/360);
+         x2 = xc+stone.nodes[i+1][1]*Math.cos(2*Math.PI*stone.nodes[i+1][0]/360);
+         y2 = yc-stone.nodes[i+1][1]*Math.sin(2*Math.PI*stone.nodes[i+1][0]/360);
 
-        var alpha = intersectionX(x1,y1,x2,y2,circleX,circleY,xc,xy);
+
+
+         alpha = intersectionX(x1,y1,x2,y2,circleX,circleY,xc,yc);
 
         if(alpha>= -100 && alpha<= 700){
             var beta = (alpha-x1)*((y1-y2)/(x1-x2)) + y1;
@@ -76,28 +101,31 @@ var collision = function(stone,circleX,circleY,circleR){
                 if(getDistance(xc,yc,circleX,circleY)+10 > getDistance(xc,yc,alpha,beta) + getDistance(alpha,beta,circleX,circleY)){
 
                         if(getDistance(alpha,beta,circleX,circleY) < circleR){//collision occurs
-                            stone.stoneEnabled = false;
+                            return true;
                         }
                 }
             }
         }
     }
 
+        return false;
 
-    var intersectionX = function (x1,y1,x2,y2,xb,yb,xc,yc){
 
-        var a = (y1-y2)/(x1-x2);
-        var b = (yb-yc)/(xb-xc);
+};
 
-        if(a==b){
-            return 10000;
-        }
+var intersectionX = function (x1,y1,x2,y2,xb,yb,xc,yc){
 
-        return (b*(-xb) + x1*a + yb -y1)/(a-b) ;
-    };
+    var a = (y1-y2)/(x1-x2);
+    var b = (yb-yc)/(xb-xc);
 
-    var getDistance = function(x1,y1,x2,y2){
+    if(a==b){
+        return 10000;
+    }
 
-        return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-    };
+    return (b*(-xb) + x1*a + yb -y1)/(a-b) ;
+};
+
+var getDistance = function(x1,y1,x2,y2){
+
+    return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 };

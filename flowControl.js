@@ -62,7 +62,7 @@ var playGame = function(){
 
         /*used  to detect collision between stones and shooter*/
         /*-5 used to give a clear vision to the user about the collision */
-        if(collision(shooter.locationx, shooter.locationy,shooter.radius-5,stones[i].locationx,stones[i].locationy,stones[i].radius)){
+        if(collision(stones[i],shooter.locationx, shooter.locationy,shooter.radius-5)){
 
 
             var health = document.getElementById("hPoint");
