@@ -68,7 +68,6 @@ function Shooter(){
             this.dy = Math.abs(this.dy);
         }
         else{
-
             this.dx = Math.abs(this.dx);
             this.dy = Math.abs(this.dy);
         }

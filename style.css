@@ -4,25 +4,19 @@
     display: inline-block;
 }
 
-
-
 body{
    background-color: coral;
 }
-
-
 
 #container{
     text-align: center;
 }
 
 #score{
-
     display: inline-block;
     margin-right: 300px;
 }
 
 #health{
     display: inline-block;
-
 }

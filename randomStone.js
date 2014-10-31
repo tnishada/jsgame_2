@@ -30,37 +30,18 @@ function RStone(x,y,radius,angle){
         ctx.fillStyle = "gray";
         ctx.strokeStyle = "green";
         ctx.beginPath();
-      //  ctx.arc(this.locationx, this.locationy,this.radius, 0, Math.PI*2, true); // x-position, y-position,arc_radius, start angle , end angle, clockwise
-
         ctx.moveTo(this.locationx+this.nodes[0][1]*Math.cos(Math.PI*2*this.nodes[0][0]), this.locationy+this.nodes[0][1]*Math.sin(Math.PI*2*this.nodes[0][0]));
 
        for(var i =1;i<6;i++){
            ctx.lineTo(this.locationx+this.nodes[i][1]*Math.cos(Math.PI*2*this.nodes[i][0]/360), this.locationy+this.nodes[i][1]*Math.sin(Math.PI*2*this.nodes[i][0]/360));
-
        }
-
-      //  ctx.closePath();
-       // ctx.stroke();
         ctx.fill();
-
-
-
-
-        ctx.fillStyle = "blue";
-        ctx.beginPath();
-        ctx.arc(this.locationx, this.locationy,4, 0, Math.PI*2, true);
-        ctx.closePath();
-        ctx.fill();
-
-
-
         ctx.fillStyle = "black";
     };
 
     this.handle = function(){
 
         if(this.locationx-radius <= WIDTH &&this.locationx+radius>=0 && this.locationy-radius<=HEIGHT && this.locationy+radius>=0 && this.stoneEnabled){
-
             this.draw(this.locationx,this.locationy);
             this.locationx += this.dx;
             this.locationy +=this.dy;

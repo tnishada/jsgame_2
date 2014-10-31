@@ -22,8 +22,6 @@ var initialize = function(){
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
 
-
-
     dx =1;
     dy = 0;
     bullet = new Bullet();
@@ -37,7 +35,6 @@ var initialize = function(){
 window.onload = function(){
     initialize();
     playGame();
-
 };
 
 /*start to execute the game*/
@@ -48,7 +45,6 @@ var playGame = function(){
         if(!stones[i].stoneEnabled){
             createStone(i);
         }
-
         stones[i].handle();
 
        // if(collision(bullet.locationx, bullet.locationy,bullet.radius,stones[i].locationx,stones[i].locationy,stones[i].radius) && bullet.bulletEnabled){
@@ -64,10 +60,9 @@ var playGame = function(){
         /*-5 used to give a clear vision to the user about the collision */
         if(collision(stones[i],shooter.locationx, shooter.locationy,shooter.radius-5)){
 
-
             var health = document.getElementById("hPoint");
             var Hpoint = parseInt(health.innerText,10);
-            Hpoint -= healthReducer(shooter.radius,stones[i].radius);
+            Hpoint -= healthReducer(shooter.radius,stones[i]);
             health.innerText = Hpoint+"";
 
             stones[i].stoneEnabled = false;
@@ -83,6 +78,7 @@ var playGame = function(){
 
     shooter.draw();
 
+        /*when left or right arrow pressed*/
     if(left){
         shooter.angle = (shooter.angle+shooter.rotationSpeed)%360;
     }
